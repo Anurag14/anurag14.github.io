@@ -49,7 +49,7 @@ then the typical Linear program can look like:
 </p>
 
 
-## THe primal 
+## The primal problem 
 
 This is easy now, the original optimization problem is assumed to be a primal. So the primal is same as the linear program:
 <p align="center">
@@ -85,7 +85,7 @@ Last time can we do even better? Lets use both the constraints at once. If we mu
 
 We have finally been able to get a very tight upper bound on our maximization problem i.e. _27_. Notice, while we were supposed to solve a maximization problem in our approach we used mimization to solve maximization! _Thanos much?_. The minimization problem we solved is called the **dual to the maximization primal**!
 
-## The Dual
+## The Dual problem
 
 While we are almost there, for sake of completeness lets put our ideas together in a mathematical framework. Lets suppose to get the tighest upper bound to the maximum you want to multiply constraint by non negative numbers. First one by _y<sub>1</sum>_ and second constraint by _y<sub>2</sub>_ ; add them and compare it to the _H(x<sub>1</sub>,x<sub>2</sub>)_. Now, 
 <p align="center">
