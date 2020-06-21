@@ -51,4 +51,11 @@ then the typical Linear program can look like:
 
 ## THe primal 
 
-This is easy now, the original optimization problem is assumed to be a primal. So the primal is 
+This is easy now, the original optimization problem is assumed to be a primal. So the primal is same as the linear program:
+<p align="center">
+  <em><strong>maximize</strong>&emsp; H(x1,x2) = 6x1 + 5x2</em> <br>
+  <em>subject to:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</em><br>
+  <em>&emsp;&emsp;x1 + x2 <= 5</em> <br>
+  <em>&emsp;&emsp;3x1 + 4x2 <= 12</em> <br>
+  <em>&emsp;&emsp;x1, x2 >= 0 </em> 
+</p>
