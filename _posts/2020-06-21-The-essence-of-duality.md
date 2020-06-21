@@ -40,9 +40,12 @@ _3x1 + 4x2 <= 12_ Given the rate of energy each activity consumes and you cannot
 _x1 >= 0_ and _x2 >= 0_ becuase you cannot do any activity for negative hours. 
 
 then the typical Linear program can look like:  
-->_**maximize** H(x1,x2) = 6x1 + 5x2_<-
-->subject to: _x1 + x2 <= 5_ <-
-->_3x1 + 4x2 <= 12_  
-->_x1 >= 0_ and _x2 >= 0_<- 
+<p align="center">
+  <em><strong>maximize</strong>&emsp; H(x1,x2) = 6x1 + 5x2</em> <br>
+  <em>subject to:&emsp; x1 + x2 <= 5</em> <br>
+  <em>3x1 + 4x2 <= 12</em> <br>  
+<em>x1, x2 >= 0 </em> 
+</p>
+
 
 
