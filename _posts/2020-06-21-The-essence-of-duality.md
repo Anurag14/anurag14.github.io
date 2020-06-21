@@ -31,12 +31,12 @@ Okay. Firstly lets brush how a typical linear programming problem looks like:
 
 Lets suppose, that you've turned let go of the conscious in this lockdown - you now want to catch up on your all previous guilty pleasures and hobbies. In turn you maximize the happiness and joy that you get out of all the activities. However, certain physical restrictions and commitments may still apply! In turn you may not be able to continue a activity or combination of certain for longer hours because they could be for example-exhausting. Given these realistic constraints how should we find out how much maximum happiness can you achieve? This can be formulated as an linear programming problem. 
 
-To not digress much lets say you like to do 2 activities dancing and painting the number of hours you paint and dance in a day can be assumed as x1 and x2. 
+To not digress much lets say you like to do 2 activities dancing and painting the number of hours you paint and dance in a day can be assumed as x1 and x2.   
 Lets say the happiness is some function of these two activities then the typical Linear program can look like:
 
-maximize 6x1 + 5x2 subject to some conditions 
-conditions can be given as 
-x1 + x2 <= 5 You cannot give more than 5 hours a day to any leisure
-3x1 + 4x2 <= 12 Given the rate of energy each activity consumes and you cannot spend more than 12 units of energy.
-x1 >= 0 and x2 >= 0 becuase you cannot do any activity for negative hours. 
+_**maximize** 6x1 + 5x2_  
+subject to some conditions  
+_x1 + x2 <= 5_ You cannot give more than 5 hours a day to any leisure!  
+_3x1 + 4x2 <= 12_ Given the rate of energy each activity consumes and you cannot spend more than 12 units of energy.  
+_x1 >= 0_ and _x2 >= 0_ becuase you cannot do any activity for negative hours.  
 
