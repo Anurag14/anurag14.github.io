@@ -101,7 +101,7 @@ So eventually we compare the above expression with _H(x<sub>1</sub>, x<sub>2</su
 Our equivalent objective would be to minimize that upper bound so the equivalent dual would be:
 
 <p align="center">
-  <em><strong>maximize</strong>&emsp; D(y<sub>1</sub>, y<sub>2</sub>) = 5y<sub>1</sub> + 12y<sub>2</sub></em> <br>
+  <em><strong>minimize</strong>&emsp; D(y<sub>1</sub>, y<sub>2</sub>) = 5y<sub>1</sub> + 12y<sub>2</sub></em> <br>
   <em>&emsp;+y<sub>1</sub> + 3y<sub>2</sub> >= 6</em> <br>
   <em>&emsp;&emsp;y<sub>1</sub> + 2y<sub>2</sub> >= 5</em> <br>
       <em>&emsp;y<sub>1</sub>, y<sub>2</sub> >= 0</em> <br> 
