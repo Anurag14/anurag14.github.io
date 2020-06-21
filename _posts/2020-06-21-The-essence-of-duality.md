@@ -91,7 +91,7 @@ While we are almost there, for sake of completeness lets put our ideas together 
 <p align="center">
   <em>&emsp;&emsp;y<sub>1</sub>*(x<sub>1</sub> + x<sub>2</sub>) <= 5y<sub>1</sub></em> <br>
   <em>&emsp;+y<sub>2</sub>*(3x<sub>1</sub> + 2x<sub>2</sub>) <= 12y<sub>2</sub></em> <br>
-  <em>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>(y1+3y<sub>2</sub>)</strong>*x1 + <strong(y<sub>1</sub>+2y<sub>2</sub>)</strong>*x2 <= 5y<sub>1</sub> + 12y<sub>2</sub></em> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(A)<br>
+  <em>&emsp;<strong>(y1+3y<sub>2</sub>)</strong>*x1 + <strong>(y<sub>1</sub>+2y<sub>2</sub>)</strong>*x2 <= 5y<sub>1</sub> + 12y<sub>2</sub></em> (A)<br>
   <em>&emsp; <strong>6</strong>*x<sub>1</sub> + <strong>5</strong>*x<sub>2</sub> = H(x<sub>1</sub>, x<sub>2</sub>)</em> <br> 
   <em>The coefficients x<sub>1</sub>, x<sub>2</sub> of in </em> (A) <em> and in H(x<sub>1</sub>, x<sub>2</sub>) have to be compared to justify that RHS of</em> (A)<em> will give upper bound on our objective. </em>      
 </p>
