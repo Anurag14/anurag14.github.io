@@ -12,6 +12,6 @@ Often the idea is quite misunderstood. The underlying simplicity is marred by co
 
 There is a more condensed representation of the above for using linear algebra and matrix notation. However, it still doesnt throw any insight into the workings and motivation behind the primal and dual relationshiip.
 
-![The condensed matrix notation](../blog_resources/2020-06-21/matrix primal dual.png)
+![The condensed matrix notation](../blog_resources/2020-06-21/matrix-primal-dual.png)
 
 However, I after giving the primal and dual relationship in linear programming a self read I decided to take a bite at explaining it. 
