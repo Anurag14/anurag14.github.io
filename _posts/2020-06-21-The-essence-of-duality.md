@@ -15,7 +15,7 @@ Fig1: Primal and dual of a linear programming problem
 </p>
 
 
-There is a more condensed representation of the above for using linear algebra and matrix notation. However, it still doesnt throw any insight into the workings and motivation behind the primal and dual relationshiip.
+There is a more condensed representation of the above for using linear algebra and matrix notation. However, it still doesnt throw any light onto the essence and motivation behind the primal and dual relationshiip.
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2020-06-21/matrix-primal-dual.png" width="300" height="50" /> 
 </p>
@@ -23,20 +23,26 @@ There is a more condensed representation of the above for using linear algebra a
 Fig2: The condensed matrix notation
 </p>
 
-After giving the primal and dual relationship in linear programming a self read I decided to take a bite at explaining it. I hope this interpretation of duality will allow you to get more intuitive understanding of it. Hopefully, helping the reader on their quest to applying this first principle whenever they encounter duality in much more complex and advance scenarios. Comments from the learned community and those who are much familiar with the topic are genuinely appreciated!
+After giving the primal and dual relationship in linear programming a read, I decided to take a bite at explaining it. I hope this interpretation of duality will allow you to get more intuitive understanding of it. Hopefully, helping the reader on their quest to applying this first principle whenever they encounter duality in much more complex and advance scenarios. Comments from the learned community and those who are much familiar with the topic are genuinely appreciated!
 
 Okay. Firstly lets brush how a typical linear programming problem looks like:
 
 ## Linear Programming Review 
 
-Lets suppose, that you've turned let go of the conscious in this lockdown - you now want to catch up on your all previous guilty pleasures and hobbies. In turn you maximize the happiness and joy that you get out of all the activities. However, certain physical restrictions and commitments may still apply! In turn you may not be able to continue a activity or combination of certain for longer hours because they could be for example-exhausting. Given these realistic constraints how should we find out how much maximum happiness can you achieve? This can be formulated as an linear programming problem. 
+Lets suppose, that in this lockdown you want to catch up on your all previous guilty pleasures and hobbies. In turn you maximize the happiness and joy that you get out of all the activities. However, certain physical restrictions may still apply! For example may not be able to continue a activity or combination of certain for longer hours because you still dont have sufficient time or the activities can be exhausting. Given these realistic constraints, we want to maximize happiness can you achieve. This can be formulated as an linear programming problem! 
 
-To not digress much lets say you like to do 2 activities dancing and painting the number of hours you paint and dance in a day can be assumed as x1 and x2.   
-Lets say the happiness is some function of these two activities then the typical Linear program can look like:
-
-_**maximize** 6x1 + 5x2_  
+To not digress and make review complex lets say you like to do 2 activities dancing and painting.  
+The number of hours you paint and dance in a day can be assumed as _x1_ and _x2_.   
+Lets say the happiness is some function of these two activities _H(x1,x2)_.   
 subject to some conditions  
 _x1 + x2 <= 5_ You cannot give more than 5 hours a day to any leisure!  
 _3x1 + 4x2 <= 12_ Given the rate of energy each activity consumes and you cannot spend more than 12 units of energy.  
-_x1 >= 0_ and _x2 >= 0_ becuase you cannot do any activity for negative hours.  
+_x1 >= 0_ and _x2 >= 0_ becuase you cannot do any activity for negative hours. 
+
+then the typical Linear program can look like:  
+->_**maximize** H(x1,x2) = 6x1 + 5x2_<-
+->subject to: _x1 + x2 <= 5_ <-
+->_3x1 + 4x2 <= 12_  
+->_x1 >= 0_ and _x2 >= 0_<- 
+
 
