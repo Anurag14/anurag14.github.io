@@ -15,7 +15,7 @@ Fig1: Primal and dual of a linear programming problem
 </p>
 
 
-There is a more condensed representation of the above for using linear algebra and matrix notation. However, it still doesnt throw any light onto the essence and motivation behind the primal and dual relationshiip.
+There is a more condensed representation of the above from using linear algebra and matrix notation. However, it still doesnt throw any light onto the essence and motivation behind the primal and dual relationshiip.
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2020-06-21/matrix-primal-dual.png" width="300" height="50" /> 
 </p>
@@ -29,14 +29,14 @@ Okay. Firstly lets brush how a typical linear programming problem looks like:
 
 ## Linear Programming Review 
 
-Lets suppose, that in this lockdown you want to catch up on your all previous guilty pleasures and hobbies. In turn you maximize the happiness and joy that you get out of all the activities. However, certain physical restrictions may still apply! For example may not be able to continue a activity or combination of certain for longer hours because you still dont have sufficient time or the activities can be exhausting. Given these realistic constraints, we want to maximize happiness can you achieve. This can be formulated as an linear programming problem! 
+Lets suppose, that in this lockdown you want to catch up on your all previous guilty pleasures and hobbies. In turn you wish to maximize happiness and joy from all these activities. However, certain physical restrictions may still apply! For example one may not be able to continue a activity or combination of certain for longer hours because you still dont have sufficient time or the activities can be exhausting. Given these realistic constraints, we want to maximize happiness can you achieve. This can be formulated as an linear programming problem! 
 
-To not make example complex, lets say you like to do 2 activities dancing and painting.  
-Let the number of hours you paint and dance in a day be is _x<sub>1</sub>_ and _x<sub>2</sub>_.   
+To not make example complex, lets say you like to do 2 activities: dancing and painting.  
+Let the number of hours you paint and dance in a day be _x<sub>1</sub>_ and _x<sub>2</sub>_ resp.   
 Lets say the happiness is some function of these two activities _H(x<sub>1</sub>, x<sub>2</sub>) = 6x<sub>1</sub>+5x<sub>2</sub>_.   
 The happiness is maximized subject to some constraints.  
-If you cannot give more than 5 hours a day to any leisure translates to, _x<sub>1</sub> + x<sub>2</sub> <= 5_ 
-Given the rate of energy each activity consumes and you cannot spend more than 12 units of energy translates to _3x<sub>1</sub> + 4x<sub>2</sub> <= 12_    
+If you cannot give more than 5 hours a day to any leisure, it translates to, _x<sub>1</sub> + x<sub>2</sub> <= 5_ 
+Given the rate of energy each activity consumes and you cannot spend more than 12 units of energy, translates to _3x<sub>1</sub> + 4x<sub>2</sub> <= 12_    
 Since you cannot do any activity for negative hours both _x<sub>1</sub>, x<sub>2</sub>_ have to be non negative  _x<sub>1</sub>, x<sub>2</sub> >= 0_ 
 
 then the typical Linear program can look like:  
@@ -67,7 +67,7 @@ How should we start to approach such problem analytically if we are not interest
 
 Then, the maximum value this objective can achieve is +∞. This sort of gives us an upper bound to the maximum value the objective can take. A lousy one, i agree. However, can we do better? Is it possible to lower / minimize this lousy upper bound? The answer turns out to be yes!  
 If you notice the second condition, _3x<sub>1</sub> + 2x<sub>2</sub> <= 12_ . 
-The trick is to multiply this equation by _3_ . Which results in _9x<sub>1</sub> + 6x<sub>2</sub> <= 36_ and for _x<sub>1</sub>, x<sub>2</sub> >= 0_
+The trick is to multiply this equation by _3_ . Which results in _9x<sub>1</sub> + 6x<sub>2</sub> <= 36_ and for non negative variables i.e. _x<sub>1</sub>, x<sub>2</sub> >= 0_. If the coefficients of these varaibles in the inqeality is greater than the coefficients of corresponding variables in the objective then the right hand side acts as the **upper bound**.  
 <p align="center">
   <em> H(x<sub>1</sub>, x<sub>2</sub>) = 6x<sub>1</sub> + 5x<sub>2</sub> <= 9x<sub>1</sub> + 6x<sub>2</sub> <=36 </em>
 </p>
@@ -107,3 +107,8 @@ Our equivalent objective would be to minimize that upper bound so the equivalent
       <em>&emsp;y<sub>1</sub>, y<sub>2</sub> >= 0</em> <br> 
 </p>
 
+## Takeaways!
+
+Every problem has can be thought of as a primal or dual problem. The conjugate of the primal is the dual and vice versa. In essence a dual of maximization problem can be thought of as trying to get a tight bound for the maximum i.e. trying to minimize the upper bound from infinity to the maximum, slowly. Which becomes a minimization problem. Similarly for a minimization primal the dual would be to approach it as maximizing the lower bound to achieve tight lower bounds!
+
+Needless to say careful readers may wonder as we make the bounds more tighter does the bound ever equal to the answer of the original problem? The answer is yes and thats what is called **weak duality**. Which is left to future discussion!
