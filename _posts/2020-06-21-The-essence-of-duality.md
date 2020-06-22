@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The essence of duality - from the perspecpetive of linear programming"
+title: "The essence of duality - from the perspective of linear programming"
 date: 2020-06-21
 ---
 
