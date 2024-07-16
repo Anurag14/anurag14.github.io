@@ -30,12 +30,12 @@ One possible solution is to give users the training data so they can train an al
 
 We propose an alternative: the model developer trains a collection of models, allowing the user to choose the one that best aligns with their needs at test time. In the gifting analogy, this is like offering multiple gifts for the recipient to choose from. Although this approach is computationally more expensive, similar to buying multiple gifts, it balances alignment and privacy concerns without needing to release the training data.
 
-## How does Imprecise Learning differ from standard learning frameworks?
+## How does Imprecise Learning differ ?
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/introduction.png" width="600" height="150" />
 </p>
 <p align ="center">
-Fig3: How are assumptions on developers and users relaxed in the Imprecise Learning framework compared to previous settings. 
+Fig3: How are assumptions different in the Imprecise Learning compared to previous settings. 
 </p>
 
 Generalization is a well-studied topic in machine learning, crucial for understanding the assumptions that ensure learning and how these assumptions play out in real-world scenarios. Broadly, generalization has been explored in two main settings: in-distribution (IID) generalization and out-of-distribution (OOD) generalization. IID settings assume that both training and deployment environments come from an unknown fixed distribution $$ \mathcal{P} $$. In contrast, OOD generalization relaxes this assumption, allowing for different distributions during training and deployment.
@@ -101,14 +101,14 @@ This implies to find an optimal $$ h $$ we need to solve some multiobjective opt
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/distribution.png"  width="750" height="120" />
 </p>
-Every choice of distribution $$ Q $$ corresponds to a point on the pareto front with respect to objectives $$ \rho_\Lambda[\mathbf{\mathcal{R}}] $$. However, which $$ Q $$ can we choose then? We argue that we should choose a $$ Q $$ that performs pareto improvement at every update step until pareto improvements are no longer possible. We explain this with an example
+Every choice of distribution $$ Q $$ corresponds to a point on the Pareto front with respect to objectives $$ \rho_\Lambda[\mathbf{\mathcal{R}}] $$. However, which $$ Q $$ can we choose then? We argue that we should choose a $$ Q $$ that performs Pareto improvement at every update step until Pareto improvements are no longer possible. We explain this with an example
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/update_example.png"  width="700" height="200" />
 </p>
-Let's say we use a fixed distribution $$Q$$ for example, uniform. It would work for the first 3 steps but then since $$ Q $$ is fixed to uniform it will improve the objective 1 at the cost of objective 2 in step 4. Thus a fixed distribution cannot guarantee us pareto improvement at each step and may continue to optimize until long after, by making improvements on some objectives at cost of others. Extending prior works on multi objective gradient desecent to infinitely many objectives allow us to find $$Q_t^*$$ that guarantee pareto improvement 
+Let's say we use a fixed distribution $$Q$$ for example, uniform. It would work for the first 3 steps but then since $$ Q $$ is fixed to uniform it will improve the objective 1 at the cost of objective 2 in step 4. We cannot do this since we don't know yet which objective does the user care about. Therefore we can only make Pareto improvements, which are not guaranteed with a fixed distribution. We find $$Q_t^*$$ that guarantees Pareto improvement as follows
 <p align="center">
-$$Q_t^*=arg\min_{Q\in\Delta(\Lambda)}||\nabla \mathbb{E}_{\lambda\sim Q}[\rho_\lambda[\mathbf{R}](h(\cdot, \lambda))]||$$   
+$$Q_t^*=arg\min_{Q\in\Delta(\Lambda)}||\nabla \mathbb{E}_{\lambda\sim Q}[\rho_\lambda[\mathbf{\mathcal{R}}](h(\cdot, \lambda))]||$$   
 </p>
 
 ## Summary
