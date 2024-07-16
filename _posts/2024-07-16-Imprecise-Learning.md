@@ -75,7 +75,7 @@ Users choices should influence model behavior. To achieve this, we need to map t
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/agg_cvar.png" width="800" height="200" />
 </p>
 <p align ="center">
-Fig4: Aggregation function $$ \rho $$ allow us to get user behavior parameterized objectives and Conditional Value at Risk (CVaR) is a example of such aggregation. 
+Fig4: Aggregation function allow us to get user behavior parameterized objectives and Conditional Value at Risk (CVaR) is a example of such aggregation. 
 </p>
 
 ### Augmented Hypothesis
@@ -96,21 +96,19 @@ Now that we can characterize user objectives with $$ rho_\lambda $$ and also fin
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/problem_formulation.png"  width="500" height="120" />
 </p>
-<p align ="center">
 This implies to find an optimal $$ h $$ we need to solve some multiobjective optimisation problem, however, in our case we can have infinitely many objectives also. So we need to extend the multi-objective optimisation ideas to infinite spectrum of objectives. We solve this problem by marginalising out these infinite objectives with respect to $$ \lambda $$. 
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/distribution.png"  width="500" height="110" />
 </p>
-<p align ="center">
 Every choice of distribution $$ Q $$ corresponds to a point on the pareto front with respect to objectives $$ \rho_\Lambda[\mathbf{\mathcal{R}}] $$. However, which $$ Q $$ can we choose then? We argue that we should choose a $$ Q $$ that performs pareto improvement at every update step until pareto improvements are no longer possible. We explain this with an example
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/update-example.png"  width="600" height="200" />
 </p>
-<p align ="center">
-Using a fixed distribution $$Q$$ let's say uniform would work for the first 3 steps but then since $$ Q $$ is fixed to uniform it will improve the objective 1 at the cost of objective 2. Thus a fixed distribution cannot guarantee us pareto improvement at each step and may continue to optimize until long after by making improvements on some objectives at cost of others. By extending prior works on multi objective gradient desecent to infinitely many objectives we obtain the way to optimise for $$Q$$ that will do pareto improvement at each step
+Let's say we use a fixed distribution $$Q$$ for example, uniform. It would work for the first 3 steps but then since $$ Q $$ is fixed to uniform it will improve the objective 1 at the cost of objective 2 in step 4. Thus a fixed distribution cannot guarantee us pareto improvement at each step and may continue to optimize until long after, by making improvements on some objectives at cost of others. Extending prior works on multi objective gradient desecent to infinitely many objectives allow us to find $$Q_t^*$$ that guarantee pareto improvement 
 $$Q_t^*=arg\min_{Q\in\Delta(\Lambda)}||\nabla \mathbb{E}_{\lambda\sim Q}[\rho_\lambda[\mathbf{R}](h(\cdot, \lambda))]||$$   
+
 ## Summary
 
 ##### Step 1: Developer represents their uncertainty with credal set
