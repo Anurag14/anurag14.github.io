@@ -5,7 +5,7 @@ date: 2024-07-16
 ---
 ## A self-driving AI's dilemma
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/thought.png" width="800" height="200" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/thought.png" width="600" height="150" />
 </p>
 <p align ="center">
 Fig1: A self driving car thought experiment
@@ -18,7 +18,7 @@ In real-world deployments, such context-dependent scenarios are common. Current 
 
 ## Approach of Imprecise Learnering 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/tldr.png" width="800" height="200" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/tldr.png" width="600" height="150" />
 </p>
 <p align ="center">
 Fig2: We train a bunch of models that the user can pick from at test time. 
@@ -32,28 +32,28 @@ We propose an alternative: the model developer trains a collection of models, al
 
 ## How does Imprecise Learning differ from standard learning frameworks?
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/introduction.png" width="800" height="200" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/introduction.png" width="600" height="150" />
 </p>
 <p align ="center">
 Fig3: How are assumptions on developers and users relaxed in the Imprecise Learning framework compared to previous settings. 
 </p>
 
-Generalization is a well-studied topic in machine learning, crucial for understanding the assumptions that ensure learning and how these assumptions play out in real-world scenarios. Broadly, generalization has been explored in two main settings: in-distribution (IID) generalization and out-of-distribution (OOD) generalization. IID settings assume that both training and deployment environments come from an unknown fixed distribution P. In contrast, OOD generalization relaxes this assumption, allowing for different distributions during training and deployment.
+Generalization is a well-studied topic in machine learning, crucial for understanding the assumptions that ensure learning and how these assumptions play out in real-world scenarios. Broadly, generalization has been explored in two main settings: in-distribution (IID) generalization and out-of-distribution (OOD) generalization. IID settings assume that both training and deployment environments come from an unknown fixed distribution $$ \mathcal{P} $$. In contrast, OOD generalization relaxes this assumption, allowing for different distributions during training and deployment.
 
 Under the IID assumption, developers know that the test-time distribution matches the training-time distribution, providing a clear understanding of the user's deployment situation. This allows the learner to optimize precisely for a single distribution. In OOD settings, where the test-time distribution is unknown, frameworks often optimize for the worst-case distribution, assuming this will cover most scenarios. This approach also represents a precise choice, committing to a specific distribution under uncertainty.
 
-However, precise generalization notions can lead to misalignment due to arbitrary commitments to distributions under uncertainty. Imprecise learning, on the other hand, does not commit to a single distribution. Instead, developers consider a set of possible distributions, known as the credal set within the Imprecise Probability community. The credal set represents the set of rational beliefs or distributions that agents can be uncertain about. By acknowledging that developers cannot know all user scenarios and deployment conditions, imprecise learning trains models for various possible distributions within this set.
+However, precise generalization notions can lead to misalignment due to arbitrary commitments to distributions under uncertainty. Imprecise learning, on the other hand, does not commit to a single distribution. Instead, developers consider a set of possible distributions $$ \mathbb{K}(\mathcal{P}) $$, known as the credal set within the Imprecise Probability community. The credal set represents the set of rational beliefs or distributions that agents can be uncertain about. By acknowledging that developers cannot know all user scenarios and deployment conditions, imprecise learning trains models for various possible distributions within this set.
 
 ## Imprecise Learning in domain generalisation
 
 To model the idea of being imprecise while learning we consider a domain generalisation task. Usually domain generalisation problem is a OOD problem where learners start with a bunch of domains ${1,\cdots,d}$. 
 For each domain we can write a population risk, which requires 3 components 
-- A Hypothesis class $F$
-- A loss function $\ell$
-- A unknown data generation distribution $P$
+- A Hypothesis class $$ \mathcal{F} $$
+- A loss function $$ \ell $$
+- A unknown data generation distribution $$ P $$
 
-Then we have our population risk,  $$\mathcal{R}(f)=\mathbb{E}_{P}[\ell(f(x),y)]$$
-Usually a model that minimises this risk is called Bayes-optimal $$f_{Bayes}=argmin_{f\in F}\mathcal{R}(f)$$
+Then we have our population risk,  $$ \mathcal{R}(f)=\mathbb{E}_{P}[\ell(f(x),y)] $$
+Usually a model that minimises this risk is called Bayes-optimal $$ f^*=arg\min_{f\in \mathcal{F}}\mathcal{R}(f) $$
 
 Now in practice when we have data from different domains we optimize a profile of risks coming from $d$ domains. Here the alignment task shows up in how we aggergate the risk profile to optimize.
 
@@ -66,7 +66,7 @@ Fig4: How choice of aggerating the risk profile introduces decision making into 
 
 ## Components of Imprecise Learning framework
 
-To allow users to make the decision of which notion of generalisation should the model follow, we need to create a choice space that will allow the users to interpret and influence the model behavior. We call this choice space $\Lambda$. 
+To allow users to make the decision of which notion of generalisation should the model follow, we need to create a choice space that will allow the users to interpret and influence the model behavior. We call this choice space $$ \Lambda $$. 
 
 ### User behavior parameterized objectives 
 Users choices should influence model behavior. To achieve this, we need to map the choice space to corresponding objectives. These corresponding objectives will make model exhibit user desired behaviour, when a model is trained using them. This is achevied by aggeration functions which transform our original risk profile into user behavior parameterized objectives.
@@ -94,7 +94,7 @@ Fig5: Augmented Hypothesis models are user choice dependent.
 
 ##### Step 1: Developer represents their uncertainty with credal set
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/step1.png" width="800" height="120" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/step1.png" width="800" height="115" />
 </p>
 
 ##### Step 2: Map credal set to user behaviour choice space $\Lambda$ and pick hypothesis class 
@@ -107,4 +107,7 @@ Fig5: Augmented Hypothesis models are user choice dependent.
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/step3.png" width="800" height="120" />
 </p>
 
-##### Step 4: At deployment users can consume model $h(\cdot,\lambda)$ with their choice of $\lambda\in\Lambda$
+##### Step 4: At deployment users can consume model $$ h(\cdot,\lambda) $$ with their choice of $$ \lambda\in\Lambda $$
+
+
+To learn further about our research you can read our ICML 2024 paper on domain generalisation [here](https://arxiv.org/abs/2404.04669v2) or have a chat with me or my really talented co-lleagues at the [Rational Intelligence Lab](https://ri-lab.org/) who made it possible, [Siu Lun Chau](https://chau999.github.io/), [Shahine Bouabid](https://shahineb.github.io/) and [Krikamol Muandet](https://www.krikamol.org/)
