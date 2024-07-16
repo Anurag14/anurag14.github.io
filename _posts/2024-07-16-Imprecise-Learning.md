@@ -61,7 +61,7 @@ Usually a model that minimises this risk is called Bayes-optimal $$f_{Bayes}=arg
 Now in practice when we have data from different domains we optimize a profile of risks coming from $d$ domains. Here the alignment task shows up in how we aggergate the risk profile to optimize.
 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/motivation.png" width="800" height="200" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/motivation.png" />
 </p>
 <p align ="center">
 Fig4: How choice of aggerating the risk profile introduces decision making into domain generalisation. 
@@ -85,7 +85,7 @@ Fig4: Aggregation functions allow us to get user behavior parameterized objectiv
 We need to also allow users to recover the model that agrees with their choice at test time, therefore the user's choice should also influcence the model. Therefore, we consider classes of models which depend on both the input and choice for giving output. 
 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/agg_cvar.png" width="800" height="200" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/hypernetwork.png" />
 </p>
 <p align ="center">
 Fig5: Augmented Hypothesis models are user choice dependent. 
@@ -95,19 +95,19 @@ Fig5: Augmented Hypothesis models are user choice dependent.
 
 ## Summary
 
-### Step 1: Step 1: Developer represents their uncertainty with credal set
+##### Step 1: Developer represents their uncertainty with credal set
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/step1.png" width="800" height="100" />
 </p>
 
-### Step 2: Map credal set to user behaviour choice space $\Lambda$ and pick hypothesis class 
+##### Step 2: Map credal set to user behaviour choice space $\Lambda$ and pick hypothesis class 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/step1.png" width="800" height="100" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/step2.png" width="800" height="100" />
 </p>
 
-### Step 3: Find a distribution that makes Pareto Improvement for model update
+##### Step 3: Find a distribution that makes Pareto Improvement for model update
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/step1.png" width="800" height="100" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/step3.png" width="800" height="100" />
 </p>
 
-### Step 4: At deployment users can consume model $h(\cdot,\lambda)$ with their choice of $\lambda\in\Lambda$
+##### Step 4: At deployment users can consume model $h(\cdot,\lambda)$ with their choice of $\lambda\in\Lambda$
