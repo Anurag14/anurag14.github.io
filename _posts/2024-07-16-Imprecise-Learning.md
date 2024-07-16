@@ -46,16 +46,23 @@ However, precise generalization notions can lead to misalignment due to arbitrar
 
 ## Imprecise Learning in domain generalisation
 
-To model the idea of being imprecise while learning we consider a domain generalisation task. Usually domain generalisation problem is a OOD problem where learners start with a bunch of domains $$\{1,\dots,d\}$$. 
-For each domain we can write a population risk, which requires 3 components 
+To model the concept of imprecise learning, we consider a domain generalization task, a typical OOD problem where learners start with multiple domains $$\{1,\dots,d\}$$. For each domain, we define the population risk, which involves three components:
 - A Hypothesis class $$ \mathcal{F} $$
 - A loss function $$ \ell $$
 - A unknown data generation distribution $$ P $$
 
-Then we have our population risk,  $$\mathcal{R}(f)=\mathbb{E}_{P}[\ell(f(x),y)]$$
-Usually a model that minimises this risk is called Bayes-optimal $$f^*=arg\min_{f\in \mathcal{F}}\mathcal{R}(f)$$
-
-Now in practice when we have data from $$d$$ domains we optimize a profile of risks $$\mathbf{\mathcal{R}}=(\mathcal{R_1},\dots,\mathcal{R_d})$$. Here the alignment task shows up in how we aggergate the risk profile to optimize. A common way to aggregate risk profile is to take average $$\mathbf{\mathcal{R}}(f)=\frac{1}{d}\sum_{i=1}^d\mathcal{R_i}(f)$$
+The population risk is given by:  
+<p align="center">
+$$\mathcal{R}(f)=\mathbb{E}_{P}[\ell(f(x),y)]$$
+</p>
+A model that minimizes this risk is called Bayes-optimal:
+<p align="center">
+$$f^*=arg\min_{f\in \mathcal{F}}\mathcal{R}(f)$$
+</p>
+Now in practice when we have data from $$d$$ domains we optimize a profile of risks $$\mathbf{\mathcal{R}}=(\mathcal{R_1},\dots,\mathcal{R_d})$$. The alignment task involves how we aggregate this risk profile for optimization. A common method is to average the risks:
+<p align="center">
+ $$\mathbf{\mathcal{R}}(f)=\frac{1}{d}\sum_{i=1}^d\mathcal{R_i}(f)$$
+</p>
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/motivation.png" width="700" height="300"/>
@@ -66,10 +73,10 @@ Fig4: How choice of aggerating the risk profile introduces decision making into 
 
 ## Components of Imprecise Learning framework
 
-To allow users to make the decision of which notion of generalisation should the model follow, we need to create a choice space that will allow the users to interpret and influence the model behavior. We call this choice space $$ \Lambda $$. 
+To allow users to decide which notion of generalization the model should follow, we need to create a choice space that enables users to interpret and influence the model's behavior. We call this choice space $$ \Lambda $$. 
 
 ### User behavior parameterized objectives 
-Users choices should influence model behavior. To achieve this, we need to map the $$ \lambda $$ in choice space to corresponding objective $$\rho_\lambda$$. These corresponding objectives will make model exhibit user desired behaviour, when a model is trained using them. This is achevied by aggeration functions which transform our original risk profile into user behavior parameterized objectives.
+Users choices should influence model behavior. To achieve this, we need to map the $$ \lambda\in\Lambda $$ to corresponding objective $$\rho_\lambda$$. These objectives ensure that the model exhibits user-desired behavior when trained using them.
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/agg_cvar.png" width="750" height="200" />
@@ -90,7 +97,7 @@ Fig5: Augmented Hypothesis models are user choice dependent.
 
 ## How do we optimize to learn within such framework?
 
-While this section is a bit technical and can be skipped if is not interested in optimisation I will try to explain it without going into details of proofs. 
+This section is a bit technical and can be skipped if one is not interested in optimisation. I will try to explain it without going into details of the proofs. 
 
 Now that we can characterize user objectives with $$ rho_\lambda $$ and also find a model trained on it from augmented hypothesis for same $$ \lambda $$ using $$ h(\cdot,\lambda) $$ we should try to characterize what Bayes optimality will look like in our setup with an augmented hypothesis $$h$$. Naturally, a augmented hypothesis $$ h $$ can be said Bayes optimal if $$ h(\cdot,\lambda) $$ is Bayes optimal with respect to every $$ \lambda $$
 <p align="center">
