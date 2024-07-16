@@ -46,7 +46,7 @@ However, precise generalization notions can lead to misalignment due to arbitrar
 
 ## Imprecise Learning in domain generalisation
 
-To model the idea of being imprecise while learning we consider a domain generalisation task. Usually domain generalisation problem is a OOD problem where learners start with a bunch of domains ${1,\cdots,d}$. 
+To model the idea of being imprecise while learning we consider a domain generalisation task. Usually domain generalisation problem is a OOD problem where learners start with a bunch of domains $${1,\dots,d}$$. 
 For each domain we can write a population risk, which requires 3 components 
 - A Hypothesis class $$ \mathcal{F} $$
 - A loss function $$ \ell $$
@@ -55,7 +55,7 @@ For each domain we can write a population risk, which requires 3 components
 Then we have our population risk,  $$ \mathcal{R}(f)=\mathbb{E}_{P}[\ell(f(x),y)] $$
 Usually a model that minimises this risk is called Bayes-optimal $$ f^*=arg\min_{f\in \mathcal{F}}\mathcal{R}(f) $$
 
-Now in practice when we have data from different domains we optimize a profile of risks coming from $d$ domains. Here the alignment task shows up in how we aggergate the risk profile to optimize.
+Now in practice when we have data from $$d$$ domains we optimize a profile of risks $$\bm{\mathcal{R}}=(\mathcal{R_1},\dots,\mathcal{R_d})$$. Here the alignment task shows up in how we aggergate the risk profile to optimize. A common way to aggregate risk profile is to take average $$\bm{\mathcal{R}}(f)=\frac{1}{d}\sum_{i=1}^d\mathcal{R_i}(f)$$
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/motivation.png" width="700" height="250"/>
@@ -69,20 +69,20 @@ Fig4: How choice of aggerating the risk profile introduces decision making into 
 To allow users to make the decision of which notion of generalisation should the model follow, we need to create a choice space that will allow the users to interpret and influence the model behavior. We call this choice space $$ \Lambda $$. 
 
 ### User behavior parameterized objectives 
-Users choices should influence model behavior. To achieve this, we need to map the choice space to corresponding objectives. These corresponding objectives will make model exhibit user desired behaviour, when a model is trained using them. This is achevied by aggeration functions which transform our original risk profile into user behavior parameterized objectives.
+Users choices should influence model behavior. To achieve this, we need to map the $$ \laambda $$ in choice space to corresponding objective $$\rho_\lambda$$. These corresponding objectives will make model exhibit user desired behaviour, when a model is trained using them. This is achevied by aggeration functions which transform our original risk profile into user behavior parameterized objectives.
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/agg_cvar.png" width="800" height="200" />
 </p>
 <p align ="center">
-Fig4: Aggregation functions allow us to get user behavior parameterized objectives and Conditional Value at Risk (CVaR) is a example of such aggregation. 
+Fig4: Aggregation function $$\rho$$ allow us to get user behavior parameterized objectives and Conditional Value at Risk (CVaR) is a example of such aggregation. 
 </p>
 
 ### Augmented Hypothesis
 We need to also allow users to recover the model that agrees with their choice at test time, therefore the user's choice should also influcence the model. Therefore, we consider classes of models which depend on both the input and choice for giving output. 
 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/hypernetwork.png"  width="600" height="150" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/hypernetwork.png"  width="600" height="130" />
 </p>
 <p align ="center">
 Fig5: Augmented Hypothesis models are user choice dependent. 
@@ -90,6 +90,26 @@ Fig5: Augmented Hypothesis models are user choice dependent.
 
 ## How do we optimize to learn within such framework?
 
+While this section is a bit technical and can be skipped if is not interested in optimisation I will try to explain it without going into details of proofs. 
+
+Now that we can characterize user objectives with $$rho_\lambda$$ and also find a model trained on it from augmented hypothesis for same $$\lambda$$ using $$h(\cdot,\lambda)$$ we should try to characterize what Bayes optimality will look like in our setup with an augmented hypothesis $$h$$. Naturally, a augmented hypothesis $$h$$ can be said Bayes optimal if $$h(\cdot,\lambda)$$ is Bayes optimal with respect to every $$\lambda$$
+<p align="center">
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/problem_formulation.png"  width="500" height="120" />
+</p>
+<p align ="center">
+This implies to find an optimal $$h$$ we need to solve some multiobjective optimisation problem, however, in our case we can have infinitely many objectives also. So we need to extend the multi-objective optimisation ideas to infinite spectrum of objectives. We solve this problem by marginalising out these infinite objectives with respect to $$\lambda$$. 
+
+<p align="center">
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/distribution.png"  width="500" height="110" />
+</p>
+<p align ="center">
+Every choice of distribution $$Q$$ corresponds to a point on the pareto front with respect to objectives $$\rho_\Lambda[\bm{\mathcal{R}}]$$. However, which $$Q$$ can we choose then? We argue that we should choose a $$Q$$ that performs pareto improvement at every update step until pareto improvements are no longer possible. We explain this with an example
+
+<p align="center">
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/update-example.png"  width="600" height="200" />
+</p>
+<p align ="center">
+Using a fixed distribution $$Q$$ let's say uniform would work for the first 3 steps but then since $$Q$$ is fixed to uniform it will improve the objective 1 at the cost of objective 2. Thus a fixed distribution cannot guarantee us pareto improvement at each step and may continue to optimize until long after by making improvements on some objectives at cost of others.    
 ## Summary
 
 ##### Step 1: Developer represents their uncertainty with credal set
@@ -97,7 +117,7 @@ Fig5: Augmented Hypothesis models are user choice dependent.
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/step1.png" width="800" height="115" />
 </p>
 
-##### Step 2: Map credal set to user behaviour choice space $\Lambda$ and pick hypothesis class 
+##### Step 2: Map credal set to user behaviour choice space $$ \Lambda $$ and pick hypothesis class 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/step2.png" width="800" height="120" />
 </p>
@@ -110,4 +130,4 @@ Fig5: Augmented Hypothesis models are user choice dependent.
 ##### Step 4: At deployment users can consume model $$ h(\cdot,\lambda) $$ with their choice of $$ \lambda\in\Lambda $$
 
 
-To learn further about our research you can read our ICML 2024 paper on domain generalisation [here](https://arxiv.org/abs/2404.04669v2) or have a chat with me or my really talented co-lleagues at the [Rational Intelligence Lab](https://ri-lab.org/) who made it possible, [Siu Lun Chau](https://chau999.github.io/), [Shahine Bouabid](https://shahineb.github.io/) and [Krikamol Muandet](https://www.krikamol.org/)
+To learn further about our research you can read our ICML 2024 [paper](https://arxiv.org/abs/2404.04669v2) or have a chat with me or my co-lleagues at the [Rational Intelligence Lab](https://ri-lab.org/) who made it possible, [Siu Lun Chau](https://chau999.github.io/), [Shahine Bouabid](https://shahineb.github.io/) and [Krikamol Muandet](https://www.krikamol.org/)
