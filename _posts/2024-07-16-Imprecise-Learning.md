@@ -46,7 +46,7 @@ However, precise generalization notions can lead to misalignment due to arbitrar
 
 ## Imprecise Learning in domain generalisation
 
-To model the idea of being imprecise while learning we consider a domain generalisation task. Usually domain generalisation problem is a OOD problem where learners start with a bunch of domains $${1,\dots,d}$$. 
+To model the idea of being imprecise while learning we consider a domain generalisation task. Usually domain generalisation problem is a OOD problem where learners start with a bunch of domains $$\{1,\dots,d\}$$. 
 For each domain we can write a population risk, which requires 3 components 
 - A Hypothesis class $$ \mathcal{F} $$
 - A loss function $$ \ell $$
@@ -58,7 +58,7 @@ Usually a model that minimises this risk is called Bayes-optimal $$f^*=arg\min_{
 Now in practice when we have data from $$d$$ domains we optimize a profile of risks $$\mathbf{\mathcal{R}}=(\mathcal{R_1},\dots,\mathcal{R_d})$$. Here the alignment task shows up in how we aggergate the risk profile to optimize. A common way to aggregate risk profile is to take average $$\mathbf{\mathcal{R}}(f)=\frac{1}{d}\sum_{i=1}^d\mathcal{R_i}(f)$$
 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/motivation.png" width="700" height="250"/>
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/motivation.png" width="700" height="300"/>
 </p>
 <p align ="center">
 Fig4: How choice of aggerating the risk profile introduces decision making into domain generalisation. 
@@ -72,7 +72,7 @@ To allow users to make the decision of which notion of generalisation should the
 Users choices should influence model behavior. To achieve this, we need to map the $$ \lambda $$ in choice space to corresponding objective $$\rho_\lambda$$. These corresponding objectives will make model exhibit user desired behaviour, when a model is trained using them. This is achevied by aggeration functions which transform our original risk profile into user behavior parameterized objectives.
 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/agg_cvar.png" width="800" height="200" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/agg_cvar.png" width="750" height="200" />
 </p>
 <p align ="center">
 Fig4: Aggregation function allow us to get user behavior parameterized objectives and Conditional Value at Risk (CVaR) is a example of such aggregation. 
@@ -94,20 +94,22 @@ While this section is a bit technical and can be skipped if is not interested in
 
 Now that we can characterize user objectives with $$ rho_\lambda $$ and also find a model trained on it from augmented hypothesis for same $$ \lambda $$ using $$ h(\cdot,\lambda) $$ we should try to characterize what Bayes optimality will look like in our setup with an augmented hypothesis $$h$$. Naturally, a augmented hypothesis $$ h $$ can be said Bayes optimal if $$ h(\cdot,\lambda) $$ is Bayes optimal with respect to every $$ \lambda $$
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/problem_formulation.png"  width="500" height="120" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/problem_formulation.png"  width="700" height="150" />
 </p>
 This implies to find an optimal $$ h $$ we need to solve some multiobjective optimisation problem, however, in our case we can have infinitely many objectives also. So we need to extend the multi-objective optimisation ideas to infinite spectrum of objectives. We solve this problem by marginalising out these infinite objectives with respect to $$ \lambda $$. 
 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/distribution.png"  width="500" height="110" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/distribution.png"  width="750" height="120" />
 </p>
 Every choice of distribution $$ Q $$ corresponds to a point on the pareto front with respect to objectives $$ \rho_\Lambda[\mathbf{\mathcal{R}}] $$. However, which $$ Q $$ can we choose then? We argue that we should choose a $$ Q $$ that performs pareto improvement at every update step until pareto improvements are no longer possible. We explain this with an example
 
 <p align="center">
-<img src="https://anurag14.github.io/blog_resources/2024-07-17/update-example.png"  width="600" height="200" />
+<img src="https://anurag14.github.io/blog_resources/2024-07-17/update_example.png"  width="700" height="200" />
 </p>
 Let's say we use a fixed distribution $$Q$$ for example, uniform. It would work for the first 3 steps but then since $$ Q $$ is fixed to uniform it will improve the objective 1 at the cost of objective 2 in step 4. Thus a fixed distribution cannot guarantee us pareto improvement at each step and may continue to optimize until long after, by making improvements on some objectives at cost of others. Extending prior works on multi objective gradient desecent to infinitely many objectives allow us to find $$Q_t^*$$ that guarantee pareto improvement 
+<p align="center">
 $$Q_t^*=arg\min_{Q\in\Delta(\Lambda)}||\nabla \mathbb{E}_{\lambda\sim Q}[\rho_\lambda[\mathbf{R}](h(\cdot, \lambda))]||$$   
+</p>
 
 ## Summary
 
