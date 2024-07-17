@@ -90,7 +90,7 @@ Fig4: Aggregation function allow us to get user behavior parameterized objective
 </p>
 
 ### Augmented Hypothesis
-We need to also allow users to recover the model that agrees with their choice at test time, therefore the user's choice should also influcence the model. Therefore, we consider classes of models which depend on both the input and choice for giving output. 
+We need to also allow users to recover the model that agrees with their choice at test time, therefore the user's choice should also influence the model. Therefore, we consider classes of models which depend on both the input and choice for giving output. 
 
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/hypernetwork.png"  width="600" height="130" />
