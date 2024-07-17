@@ -3,6 +3,7 @@ layout: post
 title: "Imprecise Learning"
 date: 2024-07-16
 ---
+In the real world, new conditions and changing scenarios often differ from training data, causing current ML models to fail. Let’s explore this with a hypothetical example.
 ## A self-driving AI's dilemma
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/thought.png" width="600" height="150" />
@@ -10,13 +11,16 @@ date: 2024-07-16
 <p align ="center">
 Fig1: A self driving car thought experiment
 </p>
-Consider a hypothetical scenario where a self-driving AI, trained on data from diverse countries and driving conditions, is deployed in various vehicles operating under different regulations. The question arises: should this AI make the same decision in identical situations across all these vehicles?
+Consider a self-driving AI trained on data from various countries and driving conditions, now deployed in different vehicles with distinct regulations. Should this AI make the same decision in identical situations across all these vehicles?
 
-The AI needs to behave differently based on the type of vehicle. Private cars always carry passengers, whereas commercial vehicles typically carry payloads. In an accident scenario, the AI in a private car should prioritize saving the passenger, while in a commercial vehicle, the priority might be to protect humans outside the vehicle. Cabs need to behave like private cars, prioritizing passenger safety when occupied.
+The AI must adapt based on the vehicle type. Private cars carry passengers, so the AI should prioritize their safety. In contrast, commercial vehicles carry payloads, and the AI might need to protect humans outside the vehicle in an accident.
 
-In real-world deployments, such context-dependent scenarios are common. Current machine learning models struggle to adapt because developers often "hard-code" generalization notions without sufficient context. These rules, or situation-dependent priorities, are user-specific and only become clear at deployment.
+Such context-dependent scenarios are common in the real world. Current machine learning models struggle to adapt because developers often “hard-code” notions of generalisation, leading to AI misalignment.
 
-## Approach of Imprecise Learnering 
+## Why AI-Alignment is like gifting?
+
+Imagine this: It’s your best friend’s birthday, and you’ve decided to surprise them with a gift. But there’s a catch — you have no idea what they want. You could buy something random and hope for the best, but chances are, your gift might not hit the mark. This dilemma mirrors a common challenge in machine learning: training models with fixed generalization notions often leads to alignment problems.
+
 <p align="center">
 <img src="https://anurag14.github.io/blog_resources/2024-07-17/tldr.png" width="600" height="150" />
 </p>
@@ -24,11 +28,11 @@ In real-world deployments, such context-dependent scenarios are common. Current 
 Fig2: We train a bunch of models that the user can pick from at test time. 
 </p>
 
-Training machine learning models with fixed generalization notions often leads to alignment problems. Using a gifting analogy, buying a gift without knowing the recipient's preferences often results in a mismatched gift. Similarly, providing a fixed model without understanding user-specific needs leads to misalignment.
+So, what’s the solution? One might suggest giving users the raw training data to train a model themselves. This is akin to handing over cash instead of a gift, allowing them to get exactly what they want. While this approach ensures alignment, it also places a significant burden on the user and can raise privacy concerns — much like the awkwardness of giving money instead of a thoughtful present.
 
-One possible solution is to give users the training data so they can train an aligned model themselves, akin to giving money instead of a gift. While this resolves the alignment issue, it imposes a burden on the user and raises privacy concerns.
+But what if there was a middle ground? Here’s where our approach comes in. We propose that model developers train a collection of models, each tailored to different potential needs, and then let the user choose the one that best fits their requirements at test time. Think of it as presenting a selection of carefully chosen gifts, allowing your friend to pick the one they love the most. This is what our approach, Imprecise Learning executes!
 
-We propose an alternative: the model developer trains a collection of models, allowing the user to choose the one that best aligns with their needs at test time. In the gifting analogy, this is like offering multiple gifts for the recipient to choose from. Although this approach is computationally more expensive, similar to buying multiple gifts, it balances alignment and privacy concerns without needing to release the training data.
+Sure, this method is more computationally expensive — similar to buying multiple gifts instead of just one. However, it offers the best of both worlds: solving the alignment problem while avoiding the need to release the training data. By providing a range of options, we respect user privacy and make the process more efficient and user-friendly.
 
 ## How does Imprecise Learning differ ?
 <p align="center">
@@ -40,7 +44,7 @@ Fig3: How are assumptions different in the Imprecise Learning compared to previo
 
 Generalization is a well-studied topic in machine learning, crucial for understanding the assumptions that ensure learning and how these assumptions play out in real-world scenarios. Broadly, generalization has been explored in two main settings: in-distribution (IID) generalization and out-of-distribution (OOD) generalization. IID settings assume that both training and deployment environments come from an unknown fixed distribution $$ \mathcal{P} $$. In contrast, OOD generalization relaxes this assumption, allowing for different distributions during training and deployment.
 
-Under the IID assumption, developers know that the test-time distribution matches the training-time distribution, providing a clear understanding of the user's deployment situation. This allows the learner to optimize precisely for a single distribution. In OOD settings, where the test-time distribution is unknown, frameworks often optimize for the worst-case distribution, assuming this will cover most scenarios. This approach also represents a precise choice, committing to a specific distribution under uncertainty.
+Under the IID assumption, developers know that the test-time distribution matches the training-time distribution, providing a clear understanding of the user's deployment situation. This allows the learner to optimize precisely for a single distribution. In OOD setting test-time distribution is unknown and the frameworks often optimize for the worst-case distribution, assuming this will cover most scenarios. This approach also represents a precise choice, committing to a specific distribution under uncertainty.
 
 However, precise generalization notions can lead to misalignment due to arbitrary commitments to distributions under uncertainty. Imprecise learning, on the other hand, does not commit to a single distribution. Instead, developers consider a set of possible distributions $$ \mathbb{K}(\mathcal{P}) $$, known as the credal set within the Imprecise Probability community. The credal set represents the set of rational beliefs or distributions that agents can be uncertain about. By acknowledging that developers cannot know all user scenarios and deployment conditions, imprecise learning trains models for various possible distributions within this set.
 
@@ -138,4 +142,4 @@ $$Q_t^*=arg\min_{Q\in\Delta(\Lambda)}||\nabla \mathbb{E}_{\lambda\sim Q}[\rho_\l
 ##### Step 4: At deployment users can consume model $$ h(\cdot,\lambda) $$ with their choice of $$ \lambda\in\Lambda $$
 
 
-To learn further about our research you can read our ICML 2024 [paper](https://arxiv.org/abs/2404.04669v2) or have a chat with me or my co-lleagues at the [Rational Intelligence Lab](https://ri-lab.org/) who made it possible, [Siu Lun Chau](https://chau999.github.io/), [Shahine Bouabid](https://shahineb.github.io/) and [Krikamol Muandet](https://www.krikamol.org/)
+To learn further about our research you can read our ICML 2024 [paper](https://arxiv.org/abs/2404.04669v2) or have a chat with me or my colleagues at the [Rational Intelligence Lab](https://ri-lab.org/) who made it possible, [Siu Lun Chau](https://chau999.github.io/), [Shahine Bouabid](https://shahineb.github.io/) and [Krikamol Muandet](https://www.krikamol.org/)
